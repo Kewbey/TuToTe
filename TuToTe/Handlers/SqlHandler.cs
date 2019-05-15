@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.SQLite;
+using 
 
 namespace TuToTe.Handlers
 {
@@ -76,5 +77,7 @@ namespace TuToTe.Handlers
             }
             return updates;
         }
+
+        public void InsertUpdates ()
     }
 }

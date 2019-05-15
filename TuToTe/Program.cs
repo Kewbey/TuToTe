@@ -28,7 +28,6 @@ namespace TuToTe
 
         public void Go()
         {
-            // API keys have to go to arguments!
             TelegramWorker = new TelegramHandler(TelegramBotApi);
             var telegramThread = new Thread(TelegramWorker.Start);
             telegramThread.Start();

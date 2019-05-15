@@ -94,10 +94,6 @@ namespace TuToTe.Handlers
                             break;
                     }
 
-                    // Avoid having SQL query being screwed up due to random ' char in the body
-                    tempTextStorage = JsonConvert.SerializeObject(up);
-                    tempTextStorage = tempTextStorage.Replace("\'", "`");
-
                     SqlWorker.Query($"INSERT INTO UpdateIDs VALUES ({up.UpdateId}, \'{tempTextStorage}\');");
                 }
             }
