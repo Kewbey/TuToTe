@@ -22,8 +22,7 @@ namespace TuToTe
             {
                 Console.WriteLine("Provide an API key for Telegram bot!");
                 return;
-            }
-            
+            }            
         }
 
         public void Go()

@@ -59,7 +59,8 @@ namespace TuToTe.Handlers
 
                         string responseBody = await response.Content.ReadAsStringAsync();
                         resp = JsonConvert.DeserializeObject<Response>(@responseBody);
-                        updates = resp.Result.ToList();                        
+
+                        updates = resp.Result.ToList().Where(o => !MessageIds.Contains(o.UpdateId)).ToList();
 
                         return updates;
 
@@ -78,24 +79,20 @@ namespace TuToTe.Handlers
         {
             foreach (var up in updates)
             {
-                string tempTextStorage;
-                if (!MessageIds.Contains(up.UpdateId))
+                MessageIds.Add(up.UpdateId);
+                switch (up.Message.Text)
                 {
-                    MessageIds.Add(up.UpdateId);
-                    switch (up.Message.Text)
-                    {
-                        case "/test2":
-                            Console.WriteLine("Tested!");
-                            await SendMessage("You've been tested", up.Message.Chat.Id);
-                            break;
+                    case "/test2":
+                        Console.WriteLine("Tested!");
+                        await SendMessage("You've been tested", up.Message.Chat.Id);
+                        break;
 
-                        default:
-                            Console.WriteLine(up.Message.Text);
-                            break;
-                    }
-
-                    SqlWorker.Query($"INSERT INTO UpdateIDs VALUES ({up.UpdateId}, \'{tempTextStorage}\');");
+                    default:
+                        Console.WriteLine(up.Message.Text + " " + up.Message.Date);
+                        break;
                 }
+
+                SqlWorker.InsertUpdate(up);
             }
 
             // Have the app make and handle calls every 1000 ms

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace TuToTe.DataTypes.Telegram
@@ -39,9 +36,6 @@ namespace TuToTe.DataTypes.Telegram
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public Message EditedChannelPost { get; set; }
 
-
-
-        // TODO: Add other types
-
+        // The list of types is not completed
     }
 }
