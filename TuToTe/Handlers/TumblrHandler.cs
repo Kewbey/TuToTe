@@ -46,7 +46,7 @@ namespace TuToTe.Handlers
             }
 
             // Cooldown for Tumblr checking
-            await Task.Delay(10000);
+            await Task.Delay(1800000);
         }
 
         private async Task FetchBlogUpdates(string blog)
